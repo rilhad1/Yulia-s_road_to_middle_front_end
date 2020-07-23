@@ -4,7 +4,6 @@ const {abstractActionResult, voidAbstractActionResult} = require('./controller.u
 module.exports =  {
     getUser(req, res) {
         User.findOne({login: req.body.login, password: req.body.password}, function (err, user) {
-            console.log(err)
             console.log(user)
             res.send(abstractActionResult(user, err));
         })
