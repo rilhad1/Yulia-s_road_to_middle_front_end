@@ -1,14 +1,16 @@
-const User = require('../models/users.model');
+import {Request, Response} from "express";
+import User from '../models/users.model';
 import {abstractActionResult, voidAbstractActionResult} from './controller.utils';
-//Simple version, without validation or sanitation
+import {Document, Error} from "mongoose";
+
 export default {
-    getUser(req, res) {
-        User.findOne({login: req.body.login, password: req.body.password}, function (err, user) {
-            console.log(user)
+    getUser(req: Request, res: Response): void {
+        User.findOne({login: req.body.login, password: req.body.password}, function (err, user: Document): void {
+            console.log(user);
             res.send(abstractActionResult(user, err));
         })
     },
-    create(req, res) {
+    create(req: Request, res: Response): Promise<Document> {
         const user = new User({
             _id: req.body._id,
             login: req.body.login,
@@ -18,14 +20,14 @@ export default {
             createdAt: Date.now(),
         });
 
-        user.save((err) => {
+        return user.save((err: Error): void => {
             res.send(voidAbstractActionResult(err));
         })
     },
-    update(req, res) {
+    update(req: Request, res: Response): void {
         res.send('Greetings from the Test controller!');
     },
-    delete(req, res) {
+    delete(req: Request, res: Response): void {
         res.send('Greetings from the Test controller!');
     }
 }

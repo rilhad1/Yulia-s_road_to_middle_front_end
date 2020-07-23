@@ -2,16 +2,16 @@ import express, {Application, NextFunction, Request, Response} from "express";
 import bodyParser from 'body-parser';
 import path from 'path';
 import {Connection} from "mongoose";
-import envVariables from 'dotenv';
+import dotenv from 'dotenv';
 import cors from 'cors';
 
 import category from './src/routes/category.route';
 import users from './src/routes/user.route';
 import customers from './src/routes/customers.route';
-
+dotenv.config({path: __dirname + '/.env'});
 import connectToDb from './src/mongo.connection';
+console.log('__dirname', __dirname)
 
-envVariables.config({path: __dirname + '/.env'});
 
 const app: Application = express();
 const db: Connection = connectToDb();
