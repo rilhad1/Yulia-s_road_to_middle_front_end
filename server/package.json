@@ -17,11 +17,13 @@
     "express": "^4.17.1",
     "express-fileupload": "^1.1.6",
     "express-graphql": "^0.11.0",
+    "graphql": "^15.3.0",
     "mongodb": "^3.5.5",
     "mongoose": "^5.9.4",
     "req-flash": "0.0.3"
   },
   "devDependencies": {
+    "@types/graphql": "^14.5.0",
     "nodemon": "^2.0.2"
   }
 }

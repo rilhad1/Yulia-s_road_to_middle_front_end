@@ -1,17 +1,19 @@
-import express, {Application, NextFunction, Request, Response} from "express";
+import express, {Application, Request, Response} from "express";
 import bodyParser from 'body-parser';
 import path from 'path';
 import {Connection} from "mongoose";
-import dotenv from 'dotenv';
 import cors from 'cors';
+import {graphqlHTTP} from 'express-graphql';
 
-import category from './src/routes/category.route';
-import users from './src/routes/user.route';
-import customers from './src/routes/customers.route';
-dotenv.config({path: __dirname + '/.env'});
+import {config} from 'dotenv';
+config({path: __dirname + '/.env'});
+
+// import category from './src/routes/category.route';
+// import users from './src/routes/user.route';
+// import customers from './src/routes/customers.route';
+
 import connectToDb from './src/mongo.connection';
-console.log('__dirname', __dirname)
-
+import schema from './src/graphql/root.schema';
 
 const app: Application = express();
 const db: Connection = connectToDb();
@@ -22,19 +24,18 @@ app.get('/', (req: Request, res: Response): void => {
     res.sendFile(path.join(__dirname + '/public/index.html'));
 });
 
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({extended: false}));
+// app.use(bodyParser.json());
+// app.use(bodyParser.urlencoded({extended: false}));
+// //
+// app.use('/category', category);
+// app.use('/users', users);
+// app.use('/customers', customers);
 
-app.use((req: Request, res: Response, next: NextFunction): void => {
-    res.header('Access-Control-Allow-Origin', "*");
-    res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
-    res.header('Access-Control-Allow-Headers', 'Content-Type');
-    next();
-});
+app.use('/graphql', graphqlHTTP({
+    schema,
+    graphiql: true,
+}));
 
-app.use('/category', category);
-app.use('/users', users);
-app.use('/customers', customers);
 
 const port = process.env.PORT || 8000;
 
