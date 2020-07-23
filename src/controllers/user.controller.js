@@ -3,7 +3,6 @@ const {abstractActionResult, voidAbstractActionResult} = require('./controller.u
 //Simple version, without validation or sanitation
 module.exports =  {
     getUser(req, res) {
-        console.log(req.body)
         User.findOne({login: req.body.login, password: req.body.password}, function (err, user) {
             console.log(err)
             console.log(user)
