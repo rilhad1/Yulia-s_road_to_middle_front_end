@@ -1,7 +1,8 @@
-const express = require('express');
+import express from 'express';
+
 const router = express.Router();
 
-const customersController = require('../controllers/customers.controller');
+import customersController from '../controllers/customers.controller';
 
 router.get('/getAllCustomers', customersController.getAllCustomers);
 router.get('/getCustomerById', customersController.getCustomerById);

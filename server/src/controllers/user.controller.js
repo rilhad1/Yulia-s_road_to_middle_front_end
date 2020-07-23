@@ -1,7 +1,7 @@
 const User = require('../models/users.model');
-const {abstractActionResult, voidAbstractActionResult} = require('./controller.utils');
+import {abstractActionResult, voidAbstractActionResult} from './controller.utils';
 //Simple version, without validation or sanitation
-module.exports =  {
+export default {
     getUser(req, res) {
         User.findOne({login: req.body.login, password: req.body.password}, function (err, user) {
             console.log(user)

@@ -1,5 +1,5 @@
-module.exports = {
-  abstractActionResult(payload, error) {
+
+export const abstractActionResult = (payload, error) => {
     if (error) {
       return {
         error: { errorType: error.name, errorMessage: error.message },
@@ -13,8 +13,9 @@ module.exports = {
       success: true,
       data: payload
     };
-  },
-  voidAbstractActionResult(error) {
+};
+
+export const voidAbstractActionResult = (error) => {
     if (error) {
       return {
         error: { errorType: error.name, errorMessage: error.message },
@@ -24,5 +25,4 @@ module.exports = {
     return {
       success: true
     };
-  }
-};
+}

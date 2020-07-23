@@ -1,7 +1,8 @@
 const Category = require('../models/category.model');
+import {abstractActionResult, voidAbstractActionResult} from './controller.utils';
 
 //Simple version, without validation or sanitation
-module.exports =  {
+export default {
     getAll(req, res) {
         Category.find({}, function (err, docs) {
             res.send(abstractActionResult(docs, err));

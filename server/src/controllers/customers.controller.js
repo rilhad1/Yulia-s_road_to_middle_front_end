@@ -1,8 +1,8 @@
-const {abstractActionResult, voidAbstractActionResult} = require('./controller.utils');
+import {abstractActionResult, voidAbstractActionResult} from './controller.utils';
 const Customer = require('../models/customers.model');
 
 //Simple version, without validation or sanitation
-module.exports =  {
+export default {
     getAllCustomers(req, res) {
         Customer.find({}, function (err, docs) {
             res.send(abstractActionResult(docs, err));
