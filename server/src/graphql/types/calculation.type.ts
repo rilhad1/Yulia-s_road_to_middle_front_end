@@ -1,9 +1,11 @@
-import { GraphQLObjectType, GraphQLID, GraphQLNonNull, GraphQLString } from "graphql";
+import {GraphQLObjectType, GraphQLID, GraphQLNonNull, GraphQLString, GraphQLList} from "graphql";
 
 export default new GraphQLObjectType({
     name: 'Calculation',
-    fields: () => ({
+    fields: {
         id: { type: GraphQLID },
-        name: { type: new GraphQLNonNull(GraphQLString) },
-    }),
+        name: { type: new GraphQLNonNull(GraphQLString)},
+        customerId: {type: GraphQLID},
+        materialIds: {type: new GraphQLList(GraphQLID)}
+    },
 });
