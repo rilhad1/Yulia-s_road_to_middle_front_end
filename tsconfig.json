@@ -11,5 +11,5 @@
     "esModuleInterop": true,
     "resolveJsonModule": true
   },
-  "exclude": ["build", "user.controller"]
+  "exclude": ["build"]
 }

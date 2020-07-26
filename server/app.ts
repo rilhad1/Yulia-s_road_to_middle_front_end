@@ -12,11 +12,23 @@ import schema from './src/graphql/root.schema';
 const app: Application = express();
 const db: Connection = connectToDb();
 
+if (process.env.NODE_ENV === 'production') {
+    app.use('/', express.static(path.join(__dirname, 'client', 'build')))
+
+    app.get('*', (req, res) => {
+        res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'))
+    })
+}
+
+// @ts-ignore
+app.use(express.json({ extended: true}));
 app.use(cors());
 
 app.get('/', (req: Request, res: Response): void => {
     res.sendFile(path.join(__dirname + '/public/index.html'));
 });
+app.use('/api/auth', require('./src/routes/auth.routes'));
+
 
 app.use('/graphql', graphqlHTTP({
     schema,

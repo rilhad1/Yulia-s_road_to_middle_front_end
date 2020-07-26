@@ -16,6 +16,7 @@
     "eslint-config-airbnb": "^18.2.0",
     "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-promise": "^4.2.1",
+    "ts-loader": "^8.0.1",
     "ts-node": "^8.10.2",
     "typescript": "^3.9.7",
     "webpack": "^4.44.0",
@@ -25,7 +26,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start-server:dev": "nodemon --watch",
-    "start-server:prod": "node ./dist/server/server.boundle.js",
+    "start-server:prod": "node ./dist/server/server.bundle.a33ebd315d07a1ad74e4.js",
     "build-server:dev": "rm -rf dist && webpack --mode development",
     "build-server:prod": "rm -rf dist && webpack --mode production",
     "lint": "eslint . --ext .ts"
