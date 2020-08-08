@@ -24,7 +24,6 @@
     "webpack-node-externals": "^2.5.0"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
     "start-server:dev": "nodemon --watch",
     "start-server:prod": "node ./dist/server/server.bundle.a33ebd315d07a1ad74e4.js",
     "build-server:dev": "rm -rf dist && webpack --mode development",
