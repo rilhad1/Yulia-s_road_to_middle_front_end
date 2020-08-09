@@ -10,6 +10,7 @@ import schema from './src/graphql/root.schema';
 
 config({path: __dirname + '/.env'});
 
+
 const app: Application = express();
 const db: Connection = connectToDb();
 
