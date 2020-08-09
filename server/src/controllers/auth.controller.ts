@@ -8,7 +8,7 @@ import jwtSecret from "../config/jwt.secret";
 export default {
     async login(req: Request, res: Response) {
         try {
-            const errors = validationResult(req)
+            const errors = validationResult(req);
 
             if (!errors.isEmpty()) {
                 return res.status(400).json({
@@ -19,14 +19,14 @@ export default {
 
             const {email, password} = req.body;
 
-            const user = await User.findOne({ email })
+            const user = await User.findOne({ email });
 
             if (!user) {
                 return res.status(400).json({ message: 'User is not found' })
             }
 
             // @ts-ignore
-            const isMatch = await bcrypt.compare(password, user.passwordHash)
+            const isMatch = await bcrypt.compare(password, user.passwordHash);
 
             if (!isMatch) {
                 return res.status(400).json({ message: 'Incorrect password, please try again' })
@@ -68,7 +68,13 @@ export default {
 
             await user.save();
 
-            res.status(201).json({ message: 'User created' })
+            const token = jwt.sign(
+                { userId: user.id },
+                jwtSecret,
+                { expiresIn: '1h' }
+            );
+
+            res.status(201).json({ message: 'User created', token, userId: user.id })
 
         } catch (e) {
             res.status(500).json({ message: 'Something went wrong, try again' })

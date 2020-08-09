@@ -27,13 +27,13 @@
     "webpack-node-externals": "^2.5.0"
   },
   "scripts": {
-    "build-server:dev": "rm -rf dist && webpack --mode development",
-    "build-server:prod": "rm -rf dist && webpack --mode production",
+    "build-server": "rm -rf dist && webpack --mode production",
     "install-client": "npm install --prefix client",
     "build-client": "npm run build --prefix client",
     "server": "nodemon --watch",
     "client": "npm run start --prefix client",
-    "dev": "cross-env NODE_ENV=development concurrently \"npm run server\" \"npm run client\"",
+    "dev": "cross-env NODE_ENV=development concurrently \"npm run server\" \"npm run client\" ",
+    "prod": "cross-env NODE_ENV=production concurrently \"npm run build-server\" \"npm run build-client\" ",
     "test": "jest test",
     "lint": "eslint . --ext .ts"
   },

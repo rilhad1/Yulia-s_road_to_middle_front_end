@@ -2,14 +2,22 @@
   "compilerOptions": {
     "target": "es6",
     "module": "commonjs",
-    "lib": ["es6"],
-//    "allowJs": true,
-//    "outDir": "build/server",
+    "lib": ["es5", "es6", "dom"],
+    "allowJs": true,
+    "sourceMap": true,
+    //    "outDir": "build/server",
+    "jsx": "react",
     "rootDir": "./server",
     "strict": true,
     "noImplicitAny": true,
     "esModuleInterop": true,
     "resolveJsonModule": true
   },
-  "exclude": ["build"]
+  "exclude": [
+    "build",
+    "./client/**/*.spec.ts",
+    "./client/**/*.test.ts",
+    "./client/**/*.spec.tsx",
+    "./client/**/*.test.tsx"
+  ]
 }
