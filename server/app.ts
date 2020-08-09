@@ -5,10 +5,11 @@ import cors from 'cors';
 import {graphqlHTTP} from 'express-graphql';
 
 import {config} from 'dotenv';
+config({path: __dirname + '/.env'});
+
 import connectToDb from './src/mongo.connection';
 import schema from './src/graphql/root.schema';
 
-config({path: __dirname + '/.env'});
 
 
 const app: Application = express();
