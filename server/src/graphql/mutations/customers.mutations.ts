@@ -6,6 +6,7 @@ import Customer from '../../models/customers.model';
 export const addCustomer = {
     type: CustomerType,
     args: {
+        // check if "GraphQLString!" can be used
         name: {type: new GraphQLNonNull(GraphQLString)}
     },
     resolve(parent: any, args: any) {
